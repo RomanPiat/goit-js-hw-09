@@ -1,0 +1,76 @@
+
+ import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+
+const options = {
+    enableTime: true,
+    time_24hr: true,
+    defaultDate: new Date(),
+    minuteIncrement: 1,
+    onClose(selectedDates) {
+      console.log(selectedDates[0]);
+    },
+  };
+
+  const refs = {
+    startBtn: document.querySelector('button'),
+    daysTimer: document.querySelector('span[data-days]'),
+    hoursTimer: document.querySelector('span[data-hours]'),
+    minutesTimer: document.querySelector('span[data-minutes]'),
+    secondsTimer: document.querySelector('span[data-seconds]'),
+  }
+
+  refs.startBtn.addEventListener('click', () => onCounTimer.start())
+
+ // const enterDate = flatpickr("input[id=datetime-picker]", options);
+
+
+// текущее время на старте таймера
+var nowTime = Date.now();
+//console.info('Now', nowTime)
+
+// введенное время
+var enterTime = Date.now(flatpickr("input[id=datetime-picker]", options))
+console.info('Enter', enterTime)
+
+const onCounTimer = {
+  intervalId: null,
+
+  start() {
+  //    refs.startBtn.disabled = true;
+      this.intervalId = setInterval(() => {
+        console.log(differenceTime())
+
+      }, 1000);
+  },
+  stop() {
+ //     refs.startBtn.disabled = false;
+      clearInterval(this.intervalId);
+  }
+}
+//посчитать дельту времени
+function differenceTime() {
+  let time = enterTime - nowTime;
+  console.log(time);
+  return time;
+}
+
+
+
+function getTimeRemaining(enterDate) {
+var t = Date.parse(endtime) - Date.parse(new Date());
+var seconds = Math.floor((t / 1000) % 60);
+var minutes = Math.floor((t / 1000 / 60) % 60);
+var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+var days = Math.floor(t / (1000 * 60 * 60 * 24));
+return {
+'total': t,
+'days': days,
+'hours': hours,
+'minutes': minutes,
+'seconds': seconds
+};
+}
+
+console.log(differenceTime())
+console.log(getTimeRemaining()) 
