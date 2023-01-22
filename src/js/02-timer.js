@@ -59,7 +59,7 @@ function countdownTimer() {
   const diff = selectedMs - new Date();
   console.log('diff', diff)
    if (diff <= 0) {
-   console.log('конец таймера')
+//   console.log('конец таймера')
    onTimer.stop()
    }
   const days = diff > 0 ? Math.floor(diff / 1000 / 60 / 60 / 24) : 0;
