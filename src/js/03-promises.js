@@ -21,11 +21,9 @@ console.log('stepDelay', stepDelay);
 console.log('promiseCount', promiseCount);
 
 let currentDelay = firstDelay;
-for (let i=0; i< promiseCount; i+=1) {
-  if (currentDelay !== 0) {
+for (let i=1; i<= promiseCount; i+=1) {
+  createPromise(i, currentDelay);
     currentDelay += stepDelay;
-  }
-  createPromise(i + 1, currentDelay);
 }
 }
 
@@ -37,11 +35,9 @@ function createPromise(position, delay) {
       if (shouldResolve) {
           // Fulfill
         resolve({ position, delay });
-        console.log('✅')
       }
           // Reject
       reject({ position, delay });
-      console.log('❌')
     }, delay);
   });
 
